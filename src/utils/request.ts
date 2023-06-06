@@ -10,7 +10,7 @@ declare module '@prequest/types' {
 }
 
 // 全局配置
-PreQuest.defaults.baseURL = 'http://locahost:8080'
+PreQuest.defaults.baseURL = 'http://locahost:3000'
 // 设置header
 PreQuest.defaults.header = {}
 
