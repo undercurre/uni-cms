@@ -1,3 +1,11 @@
+/*
+ * @Author: undercurre undercurre@163.com
+ * @Date: 2023-06-06 22:14:22
+ * @LastEditors: undercurre undercurre@163.com
+ * @LastEditTime: 2023-06-13 02:00:27
+ * @FilePath: \uni-cms\src\utils\request.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { PreQuest, create } from '@prequest/miniprogram'
 import Lock from '@prequest/lock'
 import type { MiddlewareCallback } from '@prequest/types'
@@ -10,7 +18,7 @@ declare module '@prequest/types' {
 }
 
 // 全局配置
-PreQuest.defaults.baseURL = 'http://locahost:3000'
+PreQuest.defaults.baseURL = 'http://localhost:3000'
 // 设置header
 PreQuest.defaults.header = {}
 

@@ -22,7 +22,7 @@ class UserService {
   static login(params: UserModel.LoginParm) {
     return prerequest.post<UserModel.LoginResp>(
       '/auth/login',
-      { params },
+      { data: params },
     )
   }
 }
