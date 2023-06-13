@@ -13,12 +13,14 @@
       <text class="title">{{ title }}</text>
     </view>
     <view>{{ userStore.userInfo.name }}</view>
+    <button @click="go2Test">go2Test</button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
 import UserService from '@/api/user/user'
+import router from '@/router';
 
 const title = ref('Hello')
 
@@ -31,7 +33,13 @@ async function getData() {
   })
   console.log(res)
 }
+
 getData()
+
+function go2Test() {
+  console.log('调用')
+  router.push('test', { id: 2 })
+}
 </script>
 
 <style>
