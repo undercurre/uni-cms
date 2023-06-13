@@ -77,7 +77,7 @@ const parse: MiddlewareCallback = async (ctx, next) => {
 }
 
 // 实例中间件
-// prequest.use(refreshToken).use(parse)
-prequest.use(parse)
+prequest.use(refreshToken).use(parse)
+// prequest.use(parse)
 
 export default prequest
