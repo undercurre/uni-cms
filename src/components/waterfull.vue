@@ -1,30 +1,40 @@
 <template>
-    <view>
-        <image v-for="item in imagesList" :key="item.download_url" src="item.download_url"></image>
-    </view>
+  <div>
+    <image v-for="(item,index) in imagesList"
+      :key="index" :src="item.download_url"></image>
+  </div>
 </template>
 
 <script lang="ts" setup>
+// 不能在外面使用prerequest
+import ImageService from '@/api/image/image'
 interface Image {
-    download_url: string;
-    git_url: string;
-    html_url: string;
-    name: string;
-    path: string;
-    sha: string;
-    size: number;
-    type: string;
-    url: string;
-    _link: {
-        git: string;
-        html: string;
-        self: string;
-    }
+  download_url: string;
+  git_url: string;
+  html_url: string;
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  type: string;
+  url: string;
+  _link: {
+    git: string;
+    html: string;
+    self: string;
+  };
 }
 
 const imagesList = ref<Array<Image>>([])
-const repository = 'undercurre/Image'; // 替换为你的仓库拥有者和仓库名
-const token = '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'; // 替换为你的 GitHub 访问令牌
+const imgUrl = ref('https://github.com/undercurre/Image/blob/main/0_0.png')
+
+async function getData() {
+  const res = await ImageService.getImageList()
+  console.log(res)
+  imagesList.value = res.data as Array<Image>
+}
+
+getData()
 </script>
 
 <style scoped></style>

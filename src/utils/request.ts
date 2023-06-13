@@ -2,7 +2,7 @@
  * @Author: undercurre undercurre@163.com
  * @Date: 2023-06-06 22:14:22
  * @LastEditors: undercurre undercurre@163.com
- * @LastEditTime: 2023-06-13 02:00:27
+ * @LastEditTime: 2023-06-13 23:00:28
  * @FilePath: \uni-cms\src\utils\request.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -77,7 +77,7 @@ const parse: MiddlewareCallback = async (ctx, next) => {
 }
 
 // 实例中间件
-prequest.use(refreshToken).use(parse)
-// prequest.use(parse)
+// prequest.use(refreshToken).use(parse)
+prequest.use(parse)
 
 export default prequest
