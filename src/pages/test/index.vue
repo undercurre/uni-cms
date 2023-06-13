@@ -14,6 +14,7 @@
       </view>
       <view>{{ userStore.userInfo.name }}</view>
       <button @click="go2Hello">go2Hello</button>
+      <view v-for="item in testList" :key="item.name">{{ item.name }}</view>
     </view>
   </template>
   
@@ -21,6 +22,7 @@
   import { useUserStore } from '@/stores/user'
   import UserService from '@/api/user/user'
 import router, { getRouteParams } from '@/router';
+import { getStorageRef } from '@/utils/storage';
   
   const title = ref('Test')
   
@@ -42,6 +44,9 @@ import router, { getRouteParams } from '@/router';
   function go2Hello() {
     router.pop()
   }
+
+  const testList = getStorageRef("test")
+  console.log(testList.value)
   </script>
   
   <style>

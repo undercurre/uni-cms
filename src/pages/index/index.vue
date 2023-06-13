@@ -21,6 +21,7 @@
 import { useUserStore } from '@/stores/user'
 import UserService from '@/api/user/user'
 import router from '@/router';
+import { getStorageRef } from '@/utils/storage';
 
 const title = ref('Hello')
 
@@ -40,6 +41,16 @@ function go2Test() {
   console.log('调用')
   router.push('test', { id: 2 })
 }
+
+const testList = getStorageRef("test", [])
+testList.value = [{
+  name: '1'
+},{
+  name: '2'
+},{
+  name: '3'
+}]
+console.log(testList.value)
 </script>
 
 <style>
