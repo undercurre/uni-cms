@@ -52,6 +52,7 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-3070720230316001",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3070720230316001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3070720230316001",
+    "@dcloudio/uni-ui": "^1.4.27",
     "@prequest/lock": "^1.5.2",
     "@prequest/miniprogram": "^1.5.2",
     "pinia": "^2.0.35",

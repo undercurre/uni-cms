@@ -18,6 +18,7 @@ specifiers:
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3070720230316001
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3070720230316001
   '@dcloudio/uni-stacktracey': 3.0.0-alpha-3070720230316001
+  '@dcloudio/uni-ui': ^1.4.27
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3070720230316001
   '@prequest/core': ^1.5.2
   '@prequest/helper': ^1.5.2
@@ -61,6 +62,7 @@ dependencies:
   '@dcloudio/uni-mp-toutiao': 3.0.0-alpha-3070720230316001_vue@3.3.4
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3070720230316001_vue@3.3.4
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3070720230316001_vue@3.3.4
+  '@dcloudio/uni-ui': 1.4.27
   '@prequest/lock': 1.5.2
   '@prequest/miniprogram': 1.5.2
   pinia: 2.0.35_typescript@4.9.5+vue@3.3.4
@@ -1794,6 +1796,10 @@ packages:
       - supports-color
       - ts-node
       - vue
+    dev: false
+
+  /@dcloudio/uni-ui/1.4.27:
+    resolution: {integrity: sha512-rum85gViMdOsmbVlb+iWV7V0ZEczaefpCvNaUE8mKjYfgY5NA5XeDOdG+K2Ki4BJ0gAwz8r+2w2EW2lu8XLImg==}
     dev: false
 
   /@dcloudio/vite-plugin-uni/3.0.0-alpha-3070720230316001_vite@4.0.4+vue@3.3.4:

@@ -15,6 +15,7 @@
       <view>{{ userStore.userInfo.name }}</view>
       <button @click="go2Hello">go2Hello</button>
       <view v-for="item in testList" :key="item.name">{{ item.name }}</view>
+      <uni-badge text="1"></uni-badge>
     </view>
   </template>
   
