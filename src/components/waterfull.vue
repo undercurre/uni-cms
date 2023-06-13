@@ -1,7 +1,7 @@
 <template>
   <div>
     <image v-for="(item,index) in imagesList"
-      :key="index" :src="item.download_url"></image>
+      :key="index" :src="item.download_url" mode="widthFix"></image>
   </div>
 </template>
 
@@ -26,7 +26,9 @@ interface Image {
 }
 
 const imagesList = ref<Array<Image>>([])
-const imgUrl = ref('https://github.com/undercurre/Image/blob/main/0_0.png')
+// 每行宽多少 vw
+const itemWidth = 20
+const columnCount = 5
 
 async function getData() {
   const res = await ImageService.getImageList()
