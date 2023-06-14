@@ -2,24 +2,19 @@
  * @Author: undercurre undercurre@163.com
  * @Date: 2023-06-06 22:14:22
  * @LastEditors: undercurre undercurre@163.com
- * @LastEditTime: 2023-06-14 01:45:09
+ * @LastEditTime: 2023-06-15 02:35:30
  * @FilePath: \uni-cms\src\pages\index\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <view class="content">
-    <waterfull ref="water"></waterfull>
+    <waterfall></waterfall>
   </view>
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user'
 import UserService from '@/api/user/user'
-import router from '@/router';
-import { getStorageRef } from '@/utils/storage';
-import waterfull from '@/components/business/waterfall.vue';
-
-const water = ref()
+import waterfall from '@/components/business/waterfall.vue';
 
 async function getData() {
   const res = await UserService.login({
@@ -30,24 +25,6 @@ async function getData() {
 }
 
 getData()
-
-function go2Test() {
-  console.log('调用')
-  router.push('test', { id: 2 })
-}
-
-const testList = getStorageRef("test", [])
-testList.value = [{
-  name: '1'
-},{
-  name: '2'
-},{
-  name: '3'
-}]
-console.log(testList.value)
-onMounted(() => {
-  console.log('MOunted', water.value)
-})
 </script>
 
 <style>
