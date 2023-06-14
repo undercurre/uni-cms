@@ -8,7 +8,7 @@
 -->
 <template>
   <view class="content">
-    <waterfull></waterfull>
+    <waterfull ref="water"></waterfull>
   </view>
 </template>
 
@@ -17,7 +17,9 @@ import { useUserStore } from '@/stores/user'
 import UserService from '@/api/user/user'
 import router from '@/router';
 import { getStorageRef } from '@/utils/storage';
-import waterfull from '@/components/waterfull.vue';
+import waterfull from '@/components/business/waterfall.vue';
+
+const water = ref()
 
 async function getData() {
   const res = await UserService.login({
@@ -43,6 +45,9 @@ testList.value = [{
   name: '3'
 }]
 console.log(testList.value)
+onMounted(() => {
+  console.log('MOunted', water.value)
+})
 </script>
 
 <style>

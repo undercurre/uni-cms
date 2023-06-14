@@ -20,7 +20,7 @@ class ImageService {
   // 获取列表
   static getImageList() {
     const repository = 'undercurre/Image' // 替换为你的仓库拥有者和仓库名
-    const token = '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' // 替换为你的 GitHub 访问令牌
+    const token = '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' // 替换为你的 GitHub 访问令牌
     return prerequest.get(`https://api.github.com/repos/${repository}/contents`, {
         header: {
           Authorization: `Bearer ${token}`,
