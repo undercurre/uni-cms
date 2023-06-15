@@ -3,9 +3,6 @@
     id: number
   }
   
-  export interface Test {
-    id: number
-  }
 
 
 

@@ -2,7 +2,7 @@
  * @Author: undercurre undercurre@163.com
  * @Date: 2023-06-06 22:14:22
  * @LastEditors: undercurre undercurre@163.com
- * @LastEditTime: 2023-06-13 23:00:28
+ * @LastEditTime: 2023-06-16 01:08:35
  * @FilePath: \uni-cms\src\utils\request.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -44,18 +44,29 @@ const refreshToken: MiddlewareCallback = async (ctx, next) => {
   const token = await wrapper(
     () =>
       new Promise((resolve) => {
-        uni.login({
-          async success(res) {
-            if (res.code) {
-              // 登录获取token接口
-              prequest('/login', {
-                method: 'post',
-                skipTokenCheck: true,
-                data: { code: res.code },
-              }).then((res1) => resolve(res1.data.data.token)) // 注意这里根据后台返回的token结构取值
+        uni.showModal({
+          title: '微信授权',
+          content: '登陆后体验更好的服务',
+          success: function (res) {
+            if (res.confirm) {
+              uni.login({
+                async success(res) {
+                  if (res.code) {
+                    console.log(res.code)
+                    // 登录获取token接口
+                    prequest('/users/wechat/auth', {
+                      method: 'post',
+                      skipTokenCheck: true,
+                      data: { code: res.code },
+                    }).then((res1) => resolve(res1.data.data.token)) // 注意这里根据后台返回的token结构取值
+                  }
+                },
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消');
             }
-          },
-        })
+          }
+        });
       }),
   )
   if (ctx.request.header) {
@@ -77,7 +88,6 @@ const parse: MiddlewareCallback = async (ctx, next) => {
 }
 
 // 实例中间件
-// prequest.use(refreshToken).use(parse)
-prequest.use(parse)
+prequest.use(refreshToken).use(parse)
 
 export default prequest

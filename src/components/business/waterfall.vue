@@ -2,7 +2,7 @@
  * @Author: undercurre undercurre@163.com
  * @Date: 2023-06-14 21:43:54
  * @LastEditors: undercurre undercurre@163.com
- * @LastEditTime: 2023-06-15 02:41:57
+ * @LastEditTime: 2023-06-16 00:49:15
  * @FilePath: \uni-cms\src\components\business\waterfall.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -38,7 +38,7 @@
         @click="expand(item.download_url)"
       ></image>
     </div>
-    <uni-popup ref="popup">
+    <uni-popup ref="popup" background-color="#fff">
       <view class="w-100vw h-100vh flex justify-center items-center" @click="closeExpand">
         <image class="w-100vw" mode="widthFix" :src="imageExpand"></image> 
       </view>
@@ -116,18 +116,6 @@ watchEffect(() => {
     isHidden.value = true
   }
 })
-
-// watch(() => imagesList1.value.length, (newLength, oldLength) => {
-//   if (imagesList1.value.length + imagesList2.value.length === imagesTotalList.value.length) {
-//     isHidden.value = true
-//   }
-// })
-
-// watch(() => imagesList2.value.length, (newLength, oldLength) => {
-//   if (imagesList1.value.length + imagesList2.value.length === imagesTotalList.value.length) {
-//     isHidden.value = true
-//   }
-// })
 
 const imageExpand = ref('')
 
