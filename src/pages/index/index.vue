@@ -16,15 +16,15 @@
 import UserService from '@/api/user/user'
 import waterfall from '@/components/business/waterfall.vue';
 
-async function getData() {
-  const res = await UserService.login({
-    username: 'test',
-    password: '827ccb0eea8a706c4c34a16891f84e7b',
-  })
-  console.log(res)
-}
+// async function getData() {
+//   const res = await UserService.login({
+//     username: 'test',
+//     password: '827ccb0eea8a706c4c34a16891f84e7b',
+//   })
+//   console.log(res)
+// }
 
-getData()
+// getData()
 </script>
 
 <style>
