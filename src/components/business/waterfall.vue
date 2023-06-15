@@ -8,7 +8,7 @@
 -->
 <template>
   <div class="flex">
-    <div class="w-50vw flex flex-col opacity-0 absolute" :hidden="isHidden">
+    <div class="w-50vw flex flex-col opacity-0 absolute" v-if="!isHidden">
       <image
         class="w-50vw h-auto image"
         v-for="(item, index) in imagesTotalList"
@@ -25,6 +25,7 @@
         :key="index"
         :src="item.download_url"
         mode="widthFix"
+        @click="expand(item.download_url)"
       ></image>
     </div>
     <div class="w-50vw flex flex-col">
@@ -34,8 +35,14 @@
         :key="index"
         :src="item.download_url"
         mode="widthFix"
+        @click="expand(item.download_url)"
       ></image>
     </div>
+    <uni-popup ref="popup">
+      <view class="w-100vw h-100vh flex justify-center items-center" @click="closeExpand">
+        <image class="w-100vw" mode="widthFix" :src="imageExpand"></image> 
+      </view>
+    </uni-popup>
   </div>
 </template>
 
@@ -90,23 +97,50 @@ async function calc() {
           !imagesList2.value.includes(imagesTotalList.value[index])
         ) {
           if (listHeight1 < listHeight2) {
-            console.log('存入1')
             imagesList1.value.push(imagesTotalList.value[index])
             listHeight1 += curHeight
-            // console.log('当前高度1', curHeight)
           } else {
-            console.log('存入2')
             imagesList2.value.push(imagesTotalList.value[index])
             listHeight2 += curHeight
-            // console.log('当前高度2', curHeight)
           }
         }
       })
     })
     .exec()
-  if (imagesList1.value.length + imagesList2.value.length === imagesTotalList.value.length) {
+}
+
+watchEffect(() => {
+  console.log(imagesList1.value.length, imagesList2.value.length, imagesTotalList.value.length)
+  if (imagesList1.value.length + imagesList2.value.length === imagesTotalList.value.length && imagesTotalList.value.length !== 0) {
+    console.log('消失')
     isHidden.value = true
   }
+})
+
+// watch(() => imagesList1.value.length, (newLength, oldLength) => {
+//   if (imagesList1.value.length + imagesList2.value.length === imagesTotalList.value.length) {
+//     isHidden.value = true
+//   }
+// })
+
+// watch(() => imagesList2.value.length, (newLength, oldLength) => {
+//   if (imagesList1.value.length + imagesList2.value.length === imagesTotalList.value.length) {
+//     isHidden.value = true
+//   }
+// })
+
+const imageExpand = ref('')
+
+function expand(src: string) {
+  const popup = instance?.proxy?.$refs.popup as any
+  popup.open('top')
+  imageExpand.value = src
+}
+
+function closeExpand() {
+  console.log('蒙层')
+  const popup = instance?.proxy?.$refs.popup as any
+  popup.close()
 }
 
 onShow(() => {
