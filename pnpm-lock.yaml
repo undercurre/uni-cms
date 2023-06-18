@@ -37,6 +37,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-vue: ^9.14.1
   pinia: ^2.0.35
+  pinia-plugin-persistedstate: ^3.1.0
   prequest: ^1.0.0
   qs: ^5.0.0
   sass: ^1.62.1
@@ -69,6 +70,7 @@ dependencies:
   '@prequest/lock': 1.5.2
   '@prequest/miniprogram': 1.5.2
   pinia: 2.0.35_typescript@4.9.5+vue@3.3.4
+  pinia-plugin-persistedstate: 3.1.0_pinia@2.0.35
   prequest: 1.0.0
   vue: 3.3.4
   vue-i18n: 9.2.2_vue@3.3.4
@@ -5486,6 +5488,14 @@ packages:
   /pify/2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
+
+  /pinia-plugin-persistedstate/3.1.0_pinia@2.0.35:
+    resolution: {integrity: sha512-8UN+vYMEPBdgNLwceY08mi5olI0wkYaEb8b6hD6xW7SnBRuPydWHlEhZvUWgNb/ibuf4PvufpvtS+dmhYjJQOw==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.0.35_typescript@4.9.5+vue@3.3.4
+    dev: false
 
   /pinia/2.0.35_typescript@4.9.5+vue@3.3.4:
     resolution: {integrity: sha512-P1IKKQWhxGXiiZ3atOaNI75bYlFUbRxtJdhPLX059Z7+b9Z04rnTZdSY8Aph1LA+/4QEMAYHsTQ638Wfe+6K5g==}

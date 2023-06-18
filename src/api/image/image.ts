@@ -2,7 +2,7 @@
  * @Author: undercurre undercurre@163.com
  * @Date: 2023-06-07 01:46:26
  * @LastEditors: undercurre undercurre@163.com
- * @LastEditTime: 2023-06-16 01:05:18
+ * @LastEditTime: 2023-06-18 17:31:21
  * @FilePath: \uni-cms\src\api\user\user.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,18 +14,16 @@
  * @FilePath: \uni-cms\src\api\user\user.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import prerequest from '@/utils/request'
+import type * as ImageModel from './image.model'
+import prequest from '@/utils/request'
 
 class ImageService {
   // 获取列表
   static getImageList() {
-    const repository = 'undercurre/Image' // 替换为你的仓库拥有者和仓库名
-    const token = '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' // 替换为你的 GitHub 访问令牌
-    return prerequest.get(`https://api.github.com/repos/${repository}/contents`, {
-        header: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    console.log('调用接口');
+    return prequest.get<ImageModel.getImageResp>(
+      '/images/fineOneByUser',
+    )
   }
 }
 

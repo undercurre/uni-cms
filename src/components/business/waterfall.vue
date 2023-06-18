@@ -2,7 +2,7 @@
  * @Author: undercurre undercurre@163.com
  * @Date: 2023-06-14 21:43:54
  * @LastEditors: undercurre undercurre@163.com
- * @LastEditTime: 2023-06-16 00:49:15
+ * @LastEditTime: 2023-06-18 23:31:38
  * @FilePath: \uni-cms\src\components\business\waterfall.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -13,7 +13,7 @@
         class="w-50vw h-auto image"
         v-for="(item, index) in imagesTotalList"
         :key="index"
-        :src="item.download_url"
+        :src="item.image_url"
         mode="widthFix"
         @load="calc"
       ></image>
@@ -23,9 +23,9 @@
         class="w-50vw"
         v-for="(item, index) in imagesList1"
         :key="index"
-        :src="item.download_url"
+        :src="item.image_url"
         mode="widthFix"
-        @click="expand(item.download_url)"
+        @click="expand(item.image_url)"
       ></image>
     </div>
     <div class="w-50vw flex flex-col">
@@ -33,9 +33,9 @@
         class="w-50vw"
         v-for="(item, index) in imagesList2"
         :key="index"
-        :src="item.download_url"
+        :src="item.image_url"
         mode="widthFix"
-        @click="expand(item.download_url)"
+        @click="expand(item.image_url)"
       ></image>
     </div>
     <uni-popup ref="popup" background-color="#fff">
@@ -50,22 +50,7 @@
 // 无法在内置组件中使用ref
 // 不能在外面使用prerequest
 import ImageService from '@/api/image/image'
-interface Image {
-  download_url: string
-  git_url: string
-  html_url: string
-  name: string
-  path: string
-  sha: string
-  size: number
-  type: string
-  url: string
-  _link: {
-    git: string
-    html: string
-    self: string
-  }
-}
+import type { Image } from '@/api/image/image.model'
 
 const imagesTotalList = ref<Array<Image>>([])
 const imagesList1 = ref<Array<Image>>([])
@@ -77,10 +62,14 @@ const instance = getCurrentInstance()
 const isHidden = ref(false)
 
 async function getData() {
+  console.log('获取数据')
   const res = await ImageService.getImageList()
-  imagesTotalList.value = res.data as Array<Image>
-  await nextTick()
-  calc()
+  console.log(res)
+  if (Object.keys(res).length === 0) {
+    imagesTotalList.value = res.data.data
+    await nextTick()
+    calc()
+  }
 }
 
 async function calc() {
@@ -112,7 +101,6 @@ async function calc() {
 watchEffect(() => {
   console.log(imagesList1.value.length, imagesList2.value.length, imagesTotalList.value.length)
   if (imagesList1.value.length + imagesList2.value.length === imagesTotalList.value.length && imagesTotalList.value.length !== 0) {
-    console.log('消失')
     isHidden.value = true
   }
 })
@@ -126,12 +114,11 @@ function expand(src: string) {
 }
 
 function closeExpand() {
-  console.log('蒙层')
   const popup = instance?.proxy?.$refs.popup as any
   popup.close()
 }
 
-onShow(() => {
+onMounted(() => {
   getData()
 })
 </script>
